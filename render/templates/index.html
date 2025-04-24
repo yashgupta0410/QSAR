@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Molecular Property Prediction</title>
+    <style>
+        body {
+            background-color: #333333;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            display: grid;
+            gap: 10px;
+            max-width: 600px;
+            width: 100%;
+        }
+        label {
+            margin-bottom: 5px;
+        }
+        input[type="number"], input[type="submit"] {
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            background-color: #555555;
+            color: #ffffff;
+        }
+        input[type="number"] {
+            width: 100%;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Molecular Property Prediction</h1>
+    <form id="predictionForm">
+        <label for="SpMax_L">SpMax_L</label>
+        <input type="number" id="SpMax_L" name="SpMax_L" step="any" required>
+
+        <label for="J_Dz_e">J_Dz(e)</label>
+        <input type="number" id="J_Dz_e" name="J_Dz_e" step="any" required>
+
+        <label for="nHM">nHM</label>
+        <input type="number" id="nHM" name="nHM" step="1" required>
+
+        <label for="F01_N_N">F01[N-N]</label>
+        <input type="number" id="F01_N_N" name="F01_N_N" step="1" required>
+
+        <label for="F04_C_N">F04[C-N]</label>
+        <input type="number" id="F04_C_N" name="F04_C_N" step="1" required>
+
+        <label for="NssssC">NssssC</label>
+        <input type="number" id="NssssC" name="NssssC" step="1" required>
+
+        <label for="nCb_">nCb-</label>
+        <input type="number" id="nCb_" name="nCb_" step="1" required>
+
+        <label for="C_percent">C%</label>
+        <input type="number" id="C_percent" name="C_percent" step="any" required>
+
+        <label for="nCp">nCp</label>
+        <input type="number" id="nCp" name="nCp" step="1" required>
+
+        <label for="nO">nO</label>
+        <input type="number" id="nO" name="nO" step="1" required>
+
+        <label for="F03_C_N">F03[C-N]</label>
+        <input type="number" id="F03_C_N" name="F03_C_N" step="1" required>
+
+        <label for="SdssC">SdssC</label>
+        <input type="number" id="SdssC" name="SdssC" step="any" required>
+
+        <label for="HyWi_B_m">HyWi_B(m)</label>
+        <input type="number" id="HyWi_B_m" name="HyWi_B_m" step="any" required>
+
+        <label for="LOC">LOC</label>
+        <input type="number" id="LOC" name="LOC" step="any" required>
+
+        <label for="SM6_L">SM6_L</label>
+        <input type="number" id="SM6_L" name="SM6_L" step="any" required>
+
+        <label for="F03_C_O">F03[C-O]</label>
+        <input type="number" id="F03_C_O" name="F03_C_O" step="1" required>
+
+        <label for="Me">Me</label>
+        <input type="number" id="Me" name="Me" step="any" required>
+
+        <label for="Mi">Mi</label>
+        <input type="number" id="Mi" name="Mi" step="any" required>
+
+        <label for="nN_N">nN-N</label>
+        <input type="number" id="nN_N" name="nN_N" step="1" required>
+
+        <label for="nArNO2">nArNO2</label>
+        <input type="number" id="nArNO2" name="nArNO2" step="1" required>
+
+        <label for="nCRX3">nCRX3</label>
+        <input type="number" id="nCRX3" name="nCRX3" step="1" required>
+
+        <label for="SpPosA_B_p">SpPosA_B(p)</label>
+        <input type="number" id="SpPosA_B_p" name="SpPosA_B_p" step="any" required>
+
+        <label for="nCIR">nCIR</label>
+        <input type="number" id="nCIR" name="nCIR" step="1" required>
+
+        <label for="B01_C_Br">B01[C-Br]</label>
+        <input type="number" id="B01_C_Br" name="B01_C_Br" step="1" min="0" max="1" required>
+
+        <label for="B03_C_Cl">B03[C-Cl]</label>
+        <input type="number" id="B03_C_Cl" name="B03_C_Cl" step="1" min="0" max="1" required>
+
+        <label for="N_073">N-073</label>
+        <input type="number" id="N_073" name="N_073" step="1" required>
+
+        <label for="SpMax_A">SpMax_A</label>
+        <input type="number" id="SpMax_A" name="SpMax_A" step="any" required>
+
+        <label for="Psi_i_1d">Psi_i_1d</label>
+        <input type="number" id="Psi_i_1d" name="Psi_i_1d" step="any" required>
+
+        <label for="B04_C_Br">B04[C-Br]</label>
+        <input type="number" id="B04_C_Br" name="B04_C_Br" step="1" min="0" max="1" required>
+
+        <label for="SdO">SdO</label>
+        <input type="number" id="SdO" name="SdO" step="any" required>
+
+        <label for="TI2_L">TI2_L</label>
+        <input type="number" id="TI2_L" name="TI2_L" step="any" required>
+
+        <label for="nCrt">nCrt</label>
+        <input type="number" id="nCrt" name="nCrt" step="1" required>
+
+        <label for="C_026">C-026</label>
+        <input type="number" id="C_026" name="C_026" step="1" required>
+
+        <label for="F02_C_N">F02[C-N]</label>
+        <input type="number" id="F02_C_N" name="F02_C_N" step="1" required>
+
+        <label for="nHDon">nHDon</label>
+        <input type="number" id="nHDon" name="nHDon" step="1" required>
+
+        <label for="SpMax_B_m">SpMax_B(m)</label>
+        <input type="number" id="SpMax_B_m" name="SpMax_B_m" step="any" required>
+
+        <label for="Psi_i_A">Psi_i_A</label>
+        <input type="number" id="Psi_i_A" name="Psi_i_A" step="any" required>
+
+        <label for="nN">nN</label>
+        <input type="number" id="nN" name="nN" step="1" required>
+
+        <label for="SM6_B_m">SM6_B(m)</label>
+        <input type="number" id="SM6_B_m" name="SM6_B_m" step="any" required>
+
+        <label for="nArCOOR">nArCOOR</label>
+        <input type="number" id="nArCOOR" name="nArCOOR" step="1" required>
+
+        <label for="nX">nX</label>
+        <input type="number" id="nX" name="nX" step="1" required>
+
+        <input type="submit" value="Predict Biodegradability">
+    </form>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById('predictionForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            const data = {};
+            formData.forEach((value, key) => {
+                const num = parseFloat(value);
+                if (isNaN(num) || !isFinite(num)) {
+                    throw new Error(`Invalid number for ${key}: ${value}`);
+                }
+                data[key] = num;
+            });
+            console.log('Sending data:', data);
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                console.log('Response status:', response.status);
+                if (!response.ok) {
+                    const errorText = await response.text();
+                    throw new Error(`HTTP error! Status: ${response.status}, Message: ${errorText}`);
+                }
+
+                const result = await response.json();
+                console.log('Response data:', result);
+                document.getElementById('result').innerText = `Prediction: ${result.prediction === 1 ? 'Biodegradable' : 'Not Biodegradable'}`;
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').innerText = `Error: ${error.message}`;
+            }
+        });
+    </script>
+</body>
+</html>
